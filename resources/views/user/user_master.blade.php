@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{{asset('user/assets/images/favicon.png')}}" >
+    <link rel="icon" href="{{asset('user/assets/images/favicon.png')}}">
     <!--Page title-->
     <title>Admin easy Learning</title>
     <!--bootstrap-->
@@ -17,10 +17,26 @@
     <link rel="stylesheet" href="{{asset('user/assets/plugins/metismenu-3.0.4/assets/css/mm-vertical-hover.css')}}">
     <!-- chart -->
 
-    <!-- <link rel="stylesheet" href="{{asset('assets/plugins/chartjs-bar-chart/chart.css')}}"> -->
+<!-- <link rel="stylesheet" href="{{asset('assets/plugins/chartjs-bar-chart/chart.css')}}"> -->
+
     <!--Custom CSS-->
     <link rel="stylesheet" href="{{asset('user/assets/css/style.css')}}">
+    <!-- TOASTR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+            integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!--JQUERY MESSO DA ME-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- TOASTR -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+          integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
 </head>
+
 <body id="page-top">
 <!-- preloader -->
 <div class="preloader">
@@ -50,7 +66,8 @@
                         <div class="modal-content bg-transparent">
                             <!-- Modal body -->
                             <div class="modal-body">
-                                <input class="form-control bg-transparent text-white form-control-lg"  type="text" placeholder="Search...">
+                                <input class="form-control bg-transparent text-white form-control-lg" type="text"
+                                       placeholder="Search...">
                                 <button class="btn btn-lg submit-btn" type="submit">Search</button>
                             </div>
                         </div>
@@ -257,14 +274,16 @@
                     </div>
                     <ul>
 
-                        <li><a href="#"><span><i class="fas fa-user"></i></span> User Profile</a></li>
-                        <li><a href=" "><span><i class="fas fa-cogs"></i></span>  Password Change</a></li>
+                        <li><a href="{{ route('user.profile') }}"><span><i class="fas fa-user"></i></span> User Profile</a>
+                        </li>
+                        <li><a href=" "><span><i class="fas fa-cogs"></i></span> Password Change</a></li>
 
                         <li>
                             <!-- Authentication -->
-                            <form method="POST" action="{{ route('logout') }}">
+                            <form method="POST" action="{{ route('user.logout') }}">
                                 @csrf
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                                <a href="{{ route('user.logout') }}"
+                                   onclick="event.preventDefault(); this.closest('form').submit();">
                                     <span><i class="fas fa-unlock-alt"></i></span>
                                     {{ __('Logout') }}
                                 </a>
@@ -398,25 +417,12 @@
     </aside><!-- /sidebar Area-->
 
 
-
-
-
-
     <div class="content_wrapper">
         @yield('user_content')
     </div><!--/ content wrapper -->
 
 
-
-
-
-
-
-
-
-
 </div><!--/ wrapper -->
-
 
 
 <!-- jquery -->
@@ -446,8 +452,34 @@
 <!-- Main js -->
 <script src="{{asset('user/assets/js/main.js')}}"></script>
 
+<!-- TOASTR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+<script>
+    @if(\Illuminate\Support\Facades\Session::has('message'))
+        var type = "{{ \Illuminate\Support\Facades\Session::get('alert-type', 'info') }}"
 
+        switch (type) {
+            case 'info':
+                toastr.info(" {{ \Illuminate\Support\Facades\Session::get('message') }} ");
+                break;
+
+            case 'success':
+                toastr.success(" {{ \Illuminate\Support\Facades\Session::get('message') }} ");
+                break;
+
+            case 'warning':
+                toastr.warning(" {{ \Illuminate\Support\Facades\Session::get('message') }} ");
+                break;
+
+            case 'error':
+                toastr.error(" {{ \Illuminate\Support\Facades\Session::get('message') }} ");
+                break;
+        }
+    @endif
+</script>
 
 
 </body>
