@@ -93,6 +93,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
+<<<<<<< HEAD
     @if(\Illuminate\Support\Facades\Session::has('message'))
         var type = "{{ \Illuminate\Support\Facades\Session::get('alert-type', 'info') }}"
 
@@ -113,6 +114,28 @@
                 toastr.error(" {{ \Illuminate\Support\Facades\Session::get('message') }} ");
                 break;
         }
+=======
+    @@if(\Illuminate\Support\Facades\Session::has('message'))
+        var type = "{{ \Illuminate\Support\Facades\Session::get('alert-type', info) }}"
+
+    switch (type){
+        case 'info':
+            toastr.info(" {{ \Illuminate\Support\Facades\Session::get('message') }} ");
+            break;
+
+        case 'success':
+            toastr.success(" {{ \Illuminate\Support\Facades\Session::get('message') }} ");
+            break;
+
+        case 'warning':
+            toastr.warning(" {{ \Illuminate\Support\Facades\Session::get('message') }} ");
+            break;
+
+        case 'error':
+            toastr.error(" {{ \Illuminate\Support\Facades\Session::get('message') }} ");
+            break;
+    }
+>>>>>>> 7a8de6408700c3d9d5fb513851e8130e01d3eee6
      @endif
 </script>
 

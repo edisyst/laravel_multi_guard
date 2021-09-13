@@ -276,7 +276,11 @@
 
                         <li><a href="{{ route('user.profile') }}"><span><i class="fas fa-user"></i></span> User Profile</a>
                         </li>
+<<<<<<< HEAD
                         <li><a href="{{ route('user.password.edit') }}"><span><i class="fas fa-cogs"></i></span> Password Change</a></li>
+=======
+                        <li><a href=" "><span><i class="fas fa-cogs"></i></span> Password Change</a></li>
+>>>>>>> 7a8de6408700c3d9d5fb513851e8130e01d3eee6
 
                         <li>
                             <!-- Authentication -->
