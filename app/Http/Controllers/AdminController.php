@@ -9,6 +9,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Routing\Pipeline;
 use App\Actions\Fortify\AttemptToAuthenticate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
@@ -154,6 +155,31 @@ class AdminController extends Controller
         );
 
         return redirect()->back()->with($notification);
+    }
+
+
+    public function editPassword()
+    {
+        return view('admin.password.edit');
+    }
+
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password'         => 'required|confirmed',
+        ]);
+
+        $hashedPassword = Admin::find(1)->password;
+
+        if (Hash::check($request->current_password, $hashedPassword)){
+            $user = Admin::find(1);
+            $user->password = Hash::make($request->password);
+            $user->save();
+//            return view('admin.logout');
+            return view('admin.password.edit');
+        }
     }
 
 

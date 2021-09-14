@@ -40,12 +40,12 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
 
 // ADMIN ALL ROUTES
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
-<<<<<<< HEAD
 Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
 Route::get('/admin/profile/edit', [AdminController::class, 'edit'])->name('admin.profile.edit');
 Route::patch('/admin/profile/edit', [AdminController::class, 'update'])->name('admin.profile.update');
-=======
->>>>>>> 7a8de6408700c3d9d5fb513851e8130e01d3eee6
+
+Route::get('/admin/password/edit', [AdminController::class, 'editPassword'])->name('admin.password.edit');
+Route::post('/admin/password/update', [AdminController::class, 'updatePassword'])->name('admin.password.update');
 
 
 // USER ALL ROUTES
@@ -53,11 +53,10 @@ Route::get('/user/logout', [UserController::class, 'logout'])->name('user.logout
 Route::get('/user/profile', [UserController::class, 'profile'])->name('user.profile');
 Route::get('/user/profile/edit', [UserController::class, 'edit'])->name('user.profile.edit');
 Route::patch('/user/profile/edit', [UserController::class, 'update'])->name('user.profile.update');
-<<<<<<< HEAD
+
 Route::get('/user/password/edit', [UserController::class, 'editPassword'])->name('user.password.edit');
 Route::post('/user/password/update', [UserController::class, 'updatePassword'])->name('user.password.update');
-=======
->>>>>>> 7a8de6408700c3d9d5fb513851e8130e01d3eee6
+
 
 
 

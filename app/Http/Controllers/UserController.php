@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\Hash;
-=======
->>>>>>> 7a8de6408700c3d9d5fb513851e8130e01d3eee6
+
 
 class UserController extends Controller
 {
@@ -58,7 +56,7 @@ class UserController extends Controller
 
         return redirect()->back()->with($notification);
     }
-<<<<<<< HEAD
+
 
 
     public function editPassword()
@@ -85,6 +83,5 @@ class UserController extends Controller
             return view('user.password.edit');
         }
     }
-=======
->>>>>>> 7a8de6408700c3d9d5fb513851e8130e01d3eee6
+
 }
